@@ -8,6 +8,9 @@ import SignIn from "../Signin/SignIn";
 import "./App.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Layout from "../../Components/Layout/Layout";
+/* CONTEXT */
+ShoppingCartProvider;
+import { ShoppingCartProvider } from "../../Components/Context";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -24,12 +27,14 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Layout>
-          <AppRoutes />
-        </Layout>
-      </BrowserRouter>
+      <ShoppingCartProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Layout>
+            <AppRoutes />
+          </Layout>
+        </BrowserRouter>
+      </ShoppingCartProvider>
     </>
   );
 };
