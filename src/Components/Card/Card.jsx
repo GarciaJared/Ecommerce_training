@@ -2,7 +2,7 @@
 const Card = ({ data }) => {
   // eslint-disable-next-line react/prop-types
   const { title, image, price, category } = data;
-console.log(data)
+  console.log(data);
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
       <figure className="relative mb-2 w-full h-4/5">

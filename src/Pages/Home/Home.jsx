@@ -5,8 +5,14 @@ import useFetch from "../../Hooks/FetchHooks";
 
 function Home() {
   const url = "https://fakestoreapi.com/products";
-  const { data: products } = useFetch(url, null);
+  const { data: products, loading, error } = useFetch(url, null);
 
+  if (loading) {
+    return <div>loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <Layout>
       Home
