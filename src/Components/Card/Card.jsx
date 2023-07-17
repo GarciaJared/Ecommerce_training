@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../Context/Context";
+useContext
 // eslint-disable-next-line react/prop-types
 const Card = ({ data }) => {
+  const context = useContext(ShoppingCartContext);
   // eslint-disable-next-line react/prop-types
   const { title, image, price, category } = data;
   console.log(data);
@@ -14,7 +18,8 @@ const Card = ({ data }) => {
           src={image}
           alt={title}
         />
-        <div className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
+        <div onClick={()=> context.setCount(context.count + 1)}
+        className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
           +
         </div>
       </figure>

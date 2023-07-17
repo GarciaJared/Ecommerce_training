@@ -10,7 +10,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Layout from "../../Components/Layout/Layout";
 /* CONTEXT */
 ShoppingCartProvider;
-import { ShoppingCartProvider } from "../../Components/Context";
+import { ShoppingCartProvider } from "../../Context/Context";
 
 const AppRoutes = () => {
   let routes = useRoutes([
