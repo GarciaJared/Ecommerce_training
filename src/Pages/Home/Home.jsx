@@ -2,7 +2,7 @@ import "./home.css";
 import Layout from "../../Components/Layout/Layout";
 import Card from "../../Components/Card/Card";
 import useFetch from "../../Hooks/FetchHooks";
-
+import ProductDetail from "../../Components/ProductDetail/ProductDetail";
 function Home() {
   const url = "https://fakestoreapi.com/products";
   const { data: products, loading, error } = useFetch(url, null);
@@ -21,6 +21,7 @@ function Home() {
           <Card key={product.id} data={product} />
         ))}
       </div>
+      <ProductDetail/>
     </Layout>
   );
 }
