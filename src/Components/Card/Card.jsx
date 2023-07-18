@@ -9,14 +9,20 @@ const Card = ({ data }) => {
   const { title, image, price, category } = data;
   //console.log(data);
 
-   const showProduct = (productDetail) => {
-    context.openProductDetail()
-    context.setProductToShow(productDetail)
-  }
+  const showProduct = (productDetail) => {
+    context.openProductDetail();
+    context.setProductToShow(productDetail);
+  };
+
+  const addProductsToCart = (productData) => {
+    context.setCount(context.count + 1);
+    context.setCartStateProducts([...context.cartStateProducts, productData]);
+    console.log('CART:', context.cartStateProducts)
+  };
   return (
-    <div 
-    className="bg-white cursor-pointer w-56 h-60 rounded-lg"
-    onClick={()=> showProduct(data)}
+    <div
+      className="bg-white cursor-pointer w-56 h-60 rounded-lg"
+      onClick={() => showProduct(data)}
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
@@ -27,9 +33,11 @@ const Card = ({ data }) => {
           src={image}
           alt={title}
         />
-        <div onClick={()=> context.setCount(context.count + 1)}
-        className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
-          <PlusIcon className="h-5 w-5 text-black-500"/>
+        <div
+          onClick={() => addProductsToCart(data)}
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+        >
+          <PlusIcon className="h-5 w-5 text-black-500" />
         </div>
       </figure>
       <p className="flex justify-between">
