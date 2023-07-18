@@ -14,7 +14,12 @@ export const ShoppingCartProvider = ({ children }) => {
   const closedProductDetail = () => setProductDetailOpen(false);
 
   // Product Detail · Show product
-  const [productToShow, setProductToShow] = useState({});
+  const [productToShow, setProductToShow] = useState({
+    title: "",
+    image: [],
+    description: "",
+    price: "",
+  });
 
   console.log("count", count);
   return (

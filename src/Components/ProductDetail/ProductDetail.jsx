@@ -6,7 +6,7 @@ import "./ProductDetails.css";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-
+  console.log("producto to whow:", context.productToShow);
   return (
     <aside
       className={`${
@@ -22,6 +22,24 @@ const ProductDetail = () => {
           ></XMarkIcon>
         </div>
       </div>
+      <figure className="px-6">
+        <img
+          className="w-full h-full rounded-lg"
+          src={context.productToShow.image}
+          alt={context.productToShow.title}
+        />
+      </figure>
+      <p className="flex flex-col p-6">
+        <span className="font-medium text-2xl">
+          {context.productToShow.title}
+        </span>
+        <span className="font-light text-smd">
+          {context.productToShow.description}
+        </span>
+        <span className="font-medium text-md">
+          ${context.productToShow.price}
+        </span>
+      </p>
     </aside>
   );
 };
