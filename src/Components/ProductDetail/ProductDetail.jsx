@@ -6,7 +6,7 @@ import "./ProductDetails.css";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  console.log("Products to show:", context.productToShow);
+  //console.log("Products to show:", context.productToShow);
   return (
     <aside
       className={`${

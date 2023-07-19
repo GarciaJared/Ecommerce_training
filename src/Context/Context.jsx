@@ -29,6 +29,22 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
+
+  const onAdd = (product) => {
+    const productExists = cartStateProducts.some(
+      (elem) => elem.id === product.id
+    );
+    if (productExists) {
+      const productCart = cartStateProducts.find(
+        (elem) => elem.id === product.id
+      );
+      productCart.quantity += 1;
+    } else {
+      product.quantity = 1;
+      setCartStateProducts([...cartStateProducts, product]);
+    }
+    setCount(count + 1);
+  };
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -44,6 +60,7 @@ export const ShoppingCartProvider = ({ children }) => {
         isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
+        onAdd,
       }}
     >
       {children}

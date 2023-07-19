@@ -1,12 +1,11 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
-
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/Context";
 // eslint-disable-next-line react/prop-types
 const Card = ({ data }) => {
   const context = useContext(ShoppingCartContext);
   // eslint-disable-next-line react/prop-types
-  const { title, image, price, category } = data;
+  const { title, image, price, category } = data; //props
   //console.log(data);
 
   const showProduct = (productDetail) => {
@@ -20,8 +19,10 @@ const Card = ({ data }) => {
     context.setCartStateProducts([...context.cartStateProducts, productData]);
     context.openCheckoutSideMenu();
     context.closedProductDetail();
-    console.log("CART:", context.cartStateProducts);
+    //console.log("CART:", context.cartStateProducts);
   };
+    
+
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
