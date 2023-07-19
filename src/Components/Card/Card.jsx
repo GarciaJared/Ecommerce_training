@@ -1,11 +1,21 @@
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/Context";
-// eslint-disable-next-line react/prop-types
+import PropTypes from "prop-types";
+
 const Card = ({ data }) => {
+  Card.propTypes = {
+    data: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      category: PropTypes.string.isRequired,
+    }).isRequired,
+  };
   const context = useContext(ShoppingCartContext);
-  // eslint-disable-next-line react/prop-types
-  const { title, image, price, category } = data; //props
+  const { id, title, image, price, category } = data; //props
+  id;
   //console.log(data);
 
   const showProduct = (productDetail) => {
@@ -21,7 +31,29 @@ const Card = ({ data }) => {
     context.closedProductDetail();
     //console.log("CART:", context.cartStateProducts);
   };
-    
+
+  const renderIcon = (id) => {
+    const isInCart =
+      context.cartStateProducts.filter((product) => product.id === id).length >
+      0;
+    console.log(isInCart);
+    if (isInCart) {
+      return (
+        <div className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
+          <CheckIcon className="h-5 w-5 text-white" />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          onClick={(event) => addProductsToCart(event, data)}
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+        >
+          <PlusIcon className="h-5 w-5 text-black" />
+        </div>
+      );
+    }
+  };
 
   return (
     <div
@@ -37,12 +69,7 @@ const Card = ({ data }) => {
           src={image}
           alt={title}
         />
-        <div
-          onClick={(event) => addProductsToCart(event, data)}
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-        >
-          <PlusIcon className="h-5 w-5 text-black-500" />
-        </div>
+        {renderIcon(data.id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{title}</span>
