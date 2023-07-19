@@ -11,6 +11,7 @@ import Layout from "../../Components/Layout/Layout";
 /* CONTEXT */
 ShoppingCartProvider;
 import { ShoppingCartProvider } from "../../Context/Context";
+import CheckoutSideMenu from "../../Components/CheckoutSideMenu/CheckoutSideMenu";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -33,10 +34,11 @@ const App = () => {
           <Layout>
             <AppRoutes />
           </Layout>
+          <CheckoutSideMenu/>
         </BrowserRouter>
       </ShoppingCartProvider>
     </>
   );
 };
-
+//5362 8610 4650 6966
 export default App;
